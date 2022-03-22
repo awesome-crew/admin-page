@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@geist-ui/core": "^2.3.7",
+    "inter-ui": "^3.19.3",
     "js-cookie": "2.2.1",
     "next": "12.1.0",
     "react": "17.0.2",
