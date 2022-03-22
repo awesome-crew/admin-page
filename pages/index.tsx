@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+
+import { MainLayout } from "@/components/templates";
 
 const Home: NextPage = () => {
-  return <div>hi</div>;
+  return <MainLayout>hi</MainLayout>;
 };
 
 export default Home;

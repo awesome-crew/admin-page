@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { Button, Divider, Input } from "@geist-ui/core";
+import { Button, Input } from "@geist-ui/core";
 
 import { Seo } from "@/components/atoms";
 
