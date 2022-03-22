@@ -14,23 +14,19 @@ export async function middleware(req: NextRequest) {
       throw new Error("로그인 안 되어있음");
     }
 
-    const {
-      data: { me },
-    } = await fetch(config.apiUrl + "/me", {
+    await fetch(config.apiUrl + "/auth/verify", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "content-type": "application/json",
       },
-    }).then(async (response) => await response.json());
-
-    if (!me) {
-      throw new Error("권한 없음");
-    }
+    });
 
     return NextResponse.next();
   } catch (err) {
     console.log(err);
-    return NextResponse.redirect(`/login`);
+    const url = req.nextUrl.clone();
+    url.pathname = "/login";
+    return NextResponse.redirect(url);
   }
 }
