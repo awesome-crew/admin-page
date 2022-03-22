@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@geist-ui/core": "^2.3.7",
+    "axios": "^0.26.1",
     "inter-ui": "^3.19.3",
     "js-cookie": "2.2.1",
     "next": "12.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "sass": "^1.49.9"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.1",
