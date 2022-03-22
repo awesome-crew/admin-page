@@ -17,6 +17,7 @@ export default function LoginPage() {
 
   const signin = async () => {
     await AuthService.signin(code, password);
+    alert("로그인되었습니다.");
     router.push("/");
   };
 
