@@ -40,6 +40,11 @@ export default function LoginPage() {
           scale={1.5}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") {
+              signin();
+            }
+          }}
           placeholder="Password"
         />
         <Button
