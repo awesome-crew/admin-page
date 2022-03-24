@@ -1,22 +1,26 @@
+import Link from "next/link";
 import { PropsWithChildren } from "react";
 
 import styles from "./index.module.scss";
 
-type ButtonType = "primary" | "danger" | "secondary";
+export type ButtonType = "primary" | "danger" | "secondary";
+
+export type ButtonProps = PropsWithChildren<{
+  width?: string;
+  /** @default 'primary' */
+  type?: ButtonType;
+  /** @default true */
+  bold?: boolean;
+  onClick?: () => void;
+}>;
 
 export function Button({
   width,
   type = "primary",
   children,
-  bold,
+  bold = true,
   onClick,
-}: PropsWithChildren<{
-  width?: string;
-  /** @default 'primary' */
-  type?: ButtonType;
-  bold?: boolean;
-  onClick?: () => void;
-}>) {
+}: ButtonProps) {
   return (
     <button
       className={styles.wrapper}
@@ -28,3 +32,13 @@ export function Button({
     </button>
   );
 }
+
+Button.Link = function LinkButton(props: ButtonProps & { href: string }) {
+  return (
+    <Link href={props.href}>
+      <a>
+        <Button {...props} />
+      </a>
+    </Link>
+  );
+};
