@@ -11,6 +11,8 @@
 ### 3. model별로
 
 1. `<API_URL>/<modal_name>?offset=<offset>&limit=<limit>` **GET**
-2. `<API_URL>/<modal_name>/[id]` **GET**
-3. `<API_URL>/<modal_name>` **POST**
-4. `<API_URL>/<modal_name>[id]` **PATCH**
+2. `<API_URL>/<modal_name>/count` **GET**
+3. `<API_URL>/<modal_name>/[id]` **GET**
+4. (optional) `<API_URL>/<modal_name>` **POST**
+5. (optional) `<API_URL>/<modal_name>[id]` **PATCH**
+6. (optional) `<API_URL>/<modal_name>[id]` **DELETE**
