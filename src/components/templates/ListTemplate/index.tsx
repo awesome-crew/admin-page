@@ -4,6 +4,7 @@ import { Button } from "@/components/atoms";
 import SearchBar from "./SearchBar";
 import Buttons, { ListButtonsProps } from "./Buttons";
 import Table, { ListTableProps } from "./Table";
+import Filter, { ListFilterProps } from "./Filter";
 
 import { useListCount } from "./useListCount";
 import { useListData } from "./useListData";
@@ -14,6 +15,7 @@ import config from "~/admin.config.json";
 
 export type ListTemplateProps<Model> = {
   name: string;
+  filters?: ListFilterProps["filters"];
 } & Pick<ListButtonsProps, "buttons"> &
   Pick<ListTableProps<Model>, "fields">;
 
@@ -21,6 +23,7 @@ export function ListTemplate<Model>({
   name,
   buttons,
   fields,
+  filters,
 }: ListTemplateProps<Model>) {
   const section = config.sections.find((section) =>
     section.models.find((model) => model.name === name)
@@ -48,14 +51,17 @@ export function ListTemplate<Model>({
           )}
         </Buttons>
       </div>
-      <Table
-        modelName={model.name}
-        data={data}
-        count={count}
-        fields={fields}
-        delete={model.delete}
-        detail={model.detail}
-      />
+      <div className={styles.body}>
+        <Table
+          modelName={model.name}
+          data={data}
+          count={count}
+          fields={fields}
+          delete={model.delete}
+          detail={model.detail}
+        />
+        {filters && <Filter filters={filters} />}
+      </div>
     </>
   );
 }
