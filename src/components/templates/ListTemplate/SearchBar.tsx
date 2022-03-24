@@ -27,7 +27,15 @@ export default function SearchBar({ field }: { field: string }) {
 
   return (
     <div className={styles.wrapper}>
-      <input value={text} onChange={(e) => setText(e.target.value)} />
+      <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        onKeyUp={(e) => {
+          if (e.key === "Enter") {
+            search();
+          }
+        }}
+      />
       <button onClick={search}>
         <SearchIcon />
       </button>
