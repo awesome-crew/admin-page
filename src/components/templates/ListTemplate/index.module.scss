@@ -1,0 +1,19 @@
+.breadcrumb {
+  font-size: 14px;
+  color: $gray5;
+
+  margin-bottom: 16px;
+}
+.title {
+  font-size: 32px;
+
+  margin-bottom: 16px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  margin-bottom: 16px;
+}
