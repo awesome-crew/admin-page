@@ -1,0 +1,43 @@
+.wrapper {
+  width: 100%;
+  padding: 24px;
+
+  background-color: $white;
+
+  display: block;
+  overflow-x: auto;
+
+  > table {
+    width: fit-content;
+    min-width: 100%;
+
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 8px 0 8px 16px;
+      text-align: left;
+    }
+
+    > thead {
+      background-color: $gray1;
+    }
+    > tbody {
+      tr {
+        border-bottom: 1px solid $gray5;
+
+        &:hover {
+          background-color: $gray1;
+        }
+      }
+    }
+  }
+}
+
+.delete {
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    fill: $red;
+  }
+}
