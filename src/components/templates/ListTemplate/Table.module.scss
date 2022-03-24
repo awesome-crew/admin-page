@@ -41,3 +41,36 @@
     fill: $red;
   }
 }
+
+.paginator {
+  display: flex;
+  flex-direction: row;
+
+  margin-left: auto;
+  width: fit-content;
+
+  > * {
+    &::before {
+      content: "";
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    margin: 0 0 0 8px;
+    border-radius: 4px;
+    border: 1px solid $gray4;
+    color: $black;
+
+    cursor: pointer;
+
+    &[data-current="true"],
+    &:hover {
+      border-color: $blue;
+      color: $blue;
+    }
+  }
+}

@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar";
 import Buttons, { ListButtonsProps } from "./Buttons";
 import Table, { ListTableProps } from "./Table";
 
+import { useListCount } from "./useListCount";
 import { useListData } from "./useListData";
 
 import styles from "./index.module.scss";
@@ -27,6 +28,7 @@ export function ListTemplate<Model>({
   const model = section.models.find((model) => model.name === name);
 
   const data = useListData<Model>(name);
+  const count = useListCount(name);
 
   return (
     <>
@@ -49,6 +51,7 @@ export function ListTemplate<Model>({
       <Table
         modelName={model.name}
         data={data}
+        count={count}
         fields={fields}
         delete={model.delete}
         detail={model.detail}

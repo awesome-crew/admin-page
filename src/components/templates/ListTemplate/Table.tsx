@@ -1,11 +1,12 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import dayjs from "dayjs";
 
-import { TrashCanIcon } from "@/icons";
+import { ChevronLeftIcon, ChevronRightIcon, TrashCanIcon } from "@/icons";
 
 import { api } from "@/services";
 
 import styles from "./Table.module.scss";
+import { PAGE_SIZE } from "./constants";
 
 export type ListTableProps<Model> = {
   detail?: boolean;
@@ -13,6 +14,7 @@ export type ListTableProps<Model> = {
 
   modelName: string;
   data: Model[];
+  count: number;
   fields: Array<
     | string
     | { label: string; name: string }
@@ -87,6 +89,7 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
         </thead>
         <tbody>{props.data?.map(renderRecord)}</tbody>
       </table>
+      <Paginator count={props.count} />
     </div>
   );
 }
@@ -101,5 +104,59 @@ function Cell({ children }: { children: string | number | ReactNode }) {
         ? dayjs(children).format("YYYY/MM/DD HH:mm:ss")
         : children}
     </td>
+  );
+}
+
+const PAGINATOR_SIZE = 5;
+function Paginator({ count }: { count: number }) {
+  const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+
+    const offset = Number(params.get("offset") ?? 0);
+    setPage(Math.floor(Math.max(0, offset) / PAGE_SIZE));
+  }, []);
+
+  const lastPage = Math.floor((count - 1) / PAGE_SIZE);
+
+  const min = Math.floor(page / PAGINATOR_SIZE) * PAGINATOR_SIZE;
+  const max = count ? Math.min(min + PAGINATOR_SIZE - 1, lastPage) : min;
+
+  const move = (to: number) => {
+    console.log(to);
+    if (to < 0 || to > lastPage) {
+      return;
+    }
+
+    const params = new URLSearchParams(location.search);
+    params.set("offset", (to * PAGE_SIZE).toString());
+    params.set("limit", "20");
+
+    location.search = params.toString();
+  };
+
+  return (
+    <ul className={styles.paginator}>
+      {page > 0 && (
+        <li onClick={() => move(page - 1)}>
+          <ChevronLeftIcon />
+        </li>
+      )}
+      {[...Array(max - min + 1)].map((_, index) => (
+        <li
+          key={min + index}
+          data-current={min + index === page}
+          onClick={() => move(min + index)}
+        >
+          {min + index + 1}
+        </li>
+      ))}
+      {page < lastPage && (
+        <li onClick={() => move(page + 1)}>
+          <ChevronRightIcon />
+        </li>
+      )}
+    </ul>
   );
 }
