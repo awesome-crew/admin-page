@@ -3,6 +3,7 @@
   "conventionalCommits.scopes": [
     "helpers",
     "components",
-    "oages"
+    "oages",
+    "deps"
   ]
 }
