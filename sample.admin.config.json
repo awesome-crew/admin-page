@@ -1,4 +1,19 @@
 {
     "name": "SAMPLE",
-    "apiUrl": "https://api.sample.io"
+    "apiUrl": "https://api.sample.io",
+    "sections": [
+        {
+            "name": "회원관리",
+            "models": [
+                {
+                    "label": "유저 목록",
+                    "name": "user"
+                },
+                {
+                    "label": "신고 내역",
+                    "name": "report"
+                }
+            ]
+        }
+    ]
 }
