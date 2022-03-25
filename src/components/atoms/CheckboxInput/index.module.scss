@@ -1,0 +1,17 @@
+.wrapper {
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+  font-size: 16px;
+
+  .checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+
+    cursor: pointer;
+  }
+}
