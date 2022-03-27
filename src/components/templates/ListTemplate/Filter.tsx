@@ -1,6 +1,6 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { CheckboxInput } from "@/components/atoms";
+import { BooleanFilter } from "@/components/atoms";
 
 import styles from "./Filter.module.scss";
 
@@ -24,7 +24,7 @@ export type ListFilterProps = {
 
 export default function ListFilter({ filters }: ListFilterProps) {
   const [filterValues, setFilterValues] =
-    useState<{ [name in string]?: boolean | string | number }>();
+    useState<{ [name in string]?: any }>();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -33,7 +33,7 @@ export default function ListFilter({ filters }: ListFilterProps) {
         case "boolean":
           return {
             ...acc,
-            [filter.name]: urlParams.get(filter.name) === "true",
+            [filter.name]: urlParams.get(filter.name) ?? "null",
           };
       }
 
@@ -45,14 +45,16 @@ export default function ListFilter({ filters }: ListFilterProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (filterName: string, filterValue: string) => {
     const urlParams = new URLSearchParams(location.search);
-    const filter = filters.find(({ name }) => name === e.target.name);
+    const filter = filters.find((filter) => filter.name === filterName);
     switch (filter.type) {
       case "boolean":
-        e.target.checked
-          ? urlParams.set(filter.name, "true")
-          : urlParams.delete(filter.name);
+        if (filterValue === "null") {
+          urlParams.delete(filter.name);
+          break;
+        }
+        urlParams.set(filter.name, filterValue);
     }
 
     urlParams.set("offset", "0");
@@ -69,9 +71,9 @@ export default function ListFilter({ filters }: ListFilterProps) {
           switch (filter.type) {
             case "boolean":
               return (
-                <CheckboxInput
+                <BooleanFilter
                   name={filter.name}
-                  value={filterValues[filter.name] as boolean}
+                  value={filterValues[filter.name]}
                   onChange={handleChange}
                 />
               );
