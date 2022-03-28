@@ -3,19 +3,25 @@
 
 import { MainLayout, ListTemplate } from "@/components/templates";
 
+import { User } from "@/models";
+
 export default function Users() {
   return (
     <MainLayout>
-      <ListTemplate
+      <ListTemplate<User>
         name="user"
         buttons={[{ label: "전체 삭제", type: "danger", onClick: console.log }]}
         fields={[
           "id",
           {
+            label: "멘토여부",
+            value: (user) => (user.isMento ? "✅" : "❌"),
+          },
+          {
             label: "프로필",
             render: (user) => (
               <img
-                src={(user as any).avatarUrl}
+                src={user.avatarUrl}
                 style={{ width: 50, height: 50, objectFit: "cover" }}
               />
             ),
@@ -26,7 +32,7 @@ export default function Users() {
           {
             label: "학교",
             value: (user) => {
-              const school = ((user as any).schoolHistories as any[]).find(
+              const school = user.schoolHistories.find(
                 (v) => v.isAttending
               )?.school;
               if (!school) {
