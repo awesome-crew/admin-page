@@ -24,8 +24,8 @@ export const useQuery = () => {
   const set = (input: Query) => {
     const res = { ...input };
 
-    Object.keys(input).forEach((key) => {
-      if (key === null) {
+    Object.keys(res).forEach((key) => {
+      if (res[key] === null) {
         delete res[key];
       }
     });
