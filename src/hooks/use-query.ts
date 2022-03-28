@@ -22,7 +22,7 @@ export const useQuery = () => {
   };
 
   const set = (input: Query) => {
-    const res = { ...query, ...input };
+    const res = { ...input };
 
     Object.keys(input).forEach((key) => {
       if (key === null) {
@@ -30,17 +30,22 @@ export const useQuery = () => {
       }
     });
 
-    location.search = _query2Search(query);
+    location.search = _query2Search(res);
   };
 
   const _query2Search = (input: Query) => {
-    return Object.entries(input).reduce((res, [key, value]) => {
-      if (!Array.isArray(value)) {
-        return res.concat(`${key}=${value.toString()}`);
-      }
+    return (
+      "?" +
+      Object.entries(input)
+        .map(([key, value]) => {
+          if (!Array.isArray(value)) {
+            return `${key}=${value.toString()}`;
+          }
 
-      return res.concat(value.map((v) => `${key}[]=${v}`).join("&"));
-    }, "?");
+          return value.map((v) => `${key}[]=${v}`).join("&");
+        })
+        .join("&")
+    );
   };
 
   return { query, set };
