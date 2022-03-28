@@ -25,18 +25,24 @@
 
   .item {
     width: 100%;
-    padding: 12px 16px;
 
     font-size: 14px;
     color: $black;
-
-    cursor: pointer;
   }
   .section {
-    background-color: $gray2;
+    padding: 12px 16px;
+
+    font-weight: 600;
+    font-size: 16px;
   }
   .model {
+    padding: 8px 16px;
+
+    cursor: pointer;
+    color: $gray5;
+
     &[data-current="true"] {
+      font-weight: 600;
       color: $blue;
     }
   }
