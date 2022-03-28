@@ -1,4 +1,4 @@
-import { ButtonGroup, ButtonGroupProps } from "@/components/atoms";
+import { ButtonGroup, ButtonGroupProps, Seo } from "@/components/atoms";
 import SearchBar from "./SearchBar";
 import Table, { ListTableProps } from "./Table";
 import Filter, { ListFilterProps } from "./Filter";
@@ -37,6 +37,7 @@ export function ListTemplate<Model>({
 
   return (
     <>
+      <Seo title={model.label} />
       <span className={styles.breadcrumb}>
         {section.name} / {model.label}
       </span>
