@@ -4,6 +4,7 @@
     "helpers",
     "components",
     "oages",
-    "deps"
+    "deps",
+    "hooks"
   ]
 }
