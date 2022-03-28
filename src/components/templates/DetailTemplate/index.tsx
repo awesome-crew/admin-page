@@ -1,4 +1,4 @@
-import { ButtonGroup, ButtonGroupProps } from "@/components/atoms";
+import { ButtonGroup, ButtonGroupProps, Seo } from "@/components/atoms";
 import Fields, { DetailFieldsProps } from "./Fields";
 import { ArrowLeftIcon } from "@/icons";
 
@@ -57,6 +57,7 @@ export function DetailTemplate<Model>({
   }
   return (
     <>
+      <Seo title={title(data)} />
       <h1 className={styles.title}>
         <ArrowLeftIcon className={styles.back} onClick={() => history.back()} />
         {title(data)}
