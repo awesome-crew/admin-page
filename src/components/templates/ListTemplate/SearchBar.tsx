@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import { SearchIcon } from "@/icons";
 
+import { useQuery } from "@/hooks";
+
 import styles from "./SearchBar.module.scss";
 
 export default function SearchBar({ field }: { field: string }) {
@@ -9,20 +11,22 @@ export default function SearchBar({ field }: { field: string }) {
 
   const queryName = `${field}Like`;
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const query = urlParams.get(queryName);
+  const { query, set } = useQuery();
 
-    if (query != null) {
-      setText(query);
+  useEffect(() => {
+    if (query && query[queryName] != null) {
+      setText(query[queryName].toString());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [query && !!query[queryName]]);
 
   const search = () => {
-    const urlParams = new URLSearchParams(location.search);
-    urlParams.set(queryName, text);
-    location.search = urlParams.toString();
+    set({
+      ...query,
+      [queryName]: text,
+      offset: 0,
+      limit: 20,
+    });
   };
 
   return (

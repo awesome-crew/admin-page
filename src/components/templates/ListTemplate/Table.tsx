@@ -1,12 +1,14 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode } from "react";
 import dayjs from "dayjs";
 
 import { ChevronLeftIcon, ChevronRightIcon, TrashCanIcon } from "@/icons";
 
+import { useQuery } from "@/hooks";
 import { api } from "@/services";
 
-import styles from "./Table.module.scss";
 import { PAGE_SIZE } from "./constants";
+
+import styles from "./Table.module.scss";
 
 export type ListTableProps<Model> = {
   detail?: boolean;
@@ -109,15 +111,9 @@ function Cell({ children }: { children: string | number | ReactNode }) {
 
 const PAGINATOR_SIZE = 5;
 function Paginator({ count }: { count: number }) {
-  const [page, setPage] = useState(0);
+  const { query, set } = useQuery();
 
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-
-    const offset = Number(params.get("offset") ?? 0);
-    setPage(Math.floor(Math.max(0, offset) / PAGE_SIZE));
-  }, []);
-
+  const page = Math.floor(Math.max(0, Number(query?.offset ?? 0)) / PAGE_SIZE);
   const lastPage = Math.floor((count - 1) / PAGE_SIZE);
 
   const min = Math.floor(page / PAGINATOR_SIZE) * PAGINATOR_SIZE;
@@ -128,12 +124,16 @@ function Paginator({ count }: { count: number }) {
       return;
     }
 
-    const params = new URLSearchParams(location.search);
-    params.set("offset", (to * PAGE_SIZE).toString());
-    params.set("limit", "20");
-
-    location.search = params.toString();
+    set({
+      ...query,
+      offset: to * PAGE_SIZE,
+      limit: PAGE_SIZE,
+    });
   };
+
+  if (max <= min) {
+    return null;
+  }
 
   return (
     <ul className={styles.paginator}>
