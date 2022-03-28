@@ -8,6 +8,10 @@
    - request body: code, email
 2. `<API_URL>/auth/verify` **GET**
 
+### 2. common
+
+1. `<API_URL>/common/upload` **POST**
+
 ### 3. model별로
 
 1. `<API_URL>/<modal_name>?offset=<offset>&limit=<limit>` **GET**
