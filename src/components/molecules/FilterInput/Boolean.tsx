@@ -1,18 +1,18 @@
 import styles from "./index.module.scss";
 
-export type BooleanFilterProps = {
-  name: string;
-  value: "true" | "false" | "null";
-  onChange: (filterName: string, filterValue: string) => void;
-};
+import { FilterInputProps } from "./type";
 
 const BOOLEAN_FILTER_ITEMS = [
-  { label: "All", value: "null" },
-  { label: "Yes", value: "true" },
-  { label: "No", value: "false" },
+  { label: "상관없음", value: null },
+  { label: "네", value: true },
+  { label: "아니오", value: false },
 ];
 
-export function BooleanFilter({ name, value, onChange }: BooleanFilterProps) {
+export default function BooleanFilterInput({
+  name,
+  value,
+  onChange,
+}: FilterInputProps<boolean>) {
   return (
     <div className={styles.wrapper}>
       <p className={styles.name}>{name}</p>
@@ -20,7 +20,7 @@ export function BooleanFilter({ name, value, onChange }: BooleanFilterProps) {
         <p
           key={item.label}
           className={styles.item}
-          onClick={() => onChange(name, item.value)}
+          onClick={() => onChange(item.value)}
           data-selected={value === item.value}
         >
           {item.label}
