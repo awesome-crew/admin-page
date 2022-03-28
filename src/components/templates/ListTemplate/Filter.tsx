@@ -42,6 +42,7 @@ export default function ListFilter({ filters }: ListFilterProps) {
         case "boolean":
           return (
             <FilterInput.Boolean
+              key={filter.name}
               label={filter.label}
               value={
                 { true: true, false: false }[query[filter.name]?.toString()] ??
