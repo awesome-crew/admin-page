@@ -5,9 +5,10 @@ import { ArrowLeftIcon } from "@/icons";
 import { useDetailData } from "./useDetailData";
 
 import { findModel } from "@/helpers";
+import { useForm } from "@/hooks";
 
 import styles from "./index.module.scss";
-import { API_URL } from "@/services";
+import { api } from "@/services";
 
 export type DetailTemplateProps<Model> = {
   name: string;
@@ -27,19 +28,25 @@ export function DetailTemplate<Model>({
   fields,
 }: DetailTemplateProps<Model>) {
   const model = findModel(name);
-
   const data = useDetailData<Model>(name, pk);
+  const { form } = useForm();
+
+  const save = async () => {
+    try {
+      await api.patch(`/${name}s/${pk}`, form);
+      alert("저장되었습니다.");
+      location.reload();
+    } catch {
+      alert("실패했습니다.");
+    }
+  };
 
   const getButtons = (): ButtonGroupProps["buttons"] => {
     return [
       model.edit && {
         label: "저장",
         type: "primary",
-        htmlType: "submit",
-        onClick: (e) => {
-          e.preventDefault();
-          console.log(e.target);
-        },
+        onClick: save,
       },
       ...(typeof buttons === "function" ? buttons(data) : buttons ?? []),
     ];
