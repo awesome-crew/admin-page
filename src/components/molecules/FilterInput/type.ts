@@ -1,5 +1,5 @@
 export type FilterInputProps<Value> = {
-  name: string;
+  label: string;
   value: Value | null;
   onChange: (value: Value) => void;
 };

@@ -9,10 +9,12 @@ export type ListFilterProps = {
   filters: Array<
     | {
         name: string;
+        label: string;
         type: "boolean" | "string" | "number";
       }
     | {
         name: string;
+        label: string;
         type: "enum";
         enumValues: {
           label: string;
@@ -40,9 +42,9 @@ export default function ListFilter({ filters }: ListFilterProps) {
         case "boolean":
           return (
             <FilterInput.Boolean
-              name={filter.name}
+              label={filter.label}
               value={
-                { true: true, false: false }[query[filter.name].toString()] ??
+                { true: true, false: false }[query[filter.name]?.toString()] ??
                 null
               }
               onChange={(v) => handleChange(filter.name, v)}

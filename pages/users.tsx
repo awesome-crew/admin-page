@@ -37,7 +37,7 @@ export default function Users() {
           },
           { label: "가입일시", name: "createdAt" },
         ]}
-        filters={[{ name: "isMento", type: "boolean" }]}
+        filters={[{ name: "isMento", label: "멘토계정여부", type: "boolean" }]}
       />
     </MainLayout>
   );

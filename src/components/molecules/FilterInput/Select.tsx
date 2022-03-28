@@ -6,14 +6,14 @@ export type SelectFilterInputProps<Value> = FilterInputProps<Value> & {
   options: Array<{ label: string; value: Value }>;
 };
 export default function SelectFilterInput<Value>({
-  name,
+  label,
   value,
   onChange,
   options,
 }: SelectFilterInputProps<Value>) {
   return (
     <div className={styles.wrapper}>
-      <p className={styles.name}>{name}</p>
+      <p className={styles.name}>{label}</p>
       {options.map((option) => (
         <p
           key={option.label}
