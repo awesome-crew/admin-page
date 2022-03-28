@@ -1,3 +1,4 @@
+export * from "./arrow-left";
 export * from "./chevron-left";
 export * from "./chevron-right";
 export * from "./logout";
