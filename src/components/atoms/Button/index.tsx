@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PropsWithChildren } from "react";
+import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 
 import styles from "./index.module.scss";
 
@@ -12,6 +12,7 @@ export type ButtonProps = PropsWithChildren<{
   /** @default true */
   bold?: boolean;
   onClick?: () => void;
+  htmlType?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
 }>;
 
 export function Button({
@@ -20,11 +21,13 @@ export function Button({
   children,
   bold = true,
   onClick,
+  htmlType,
 }: ButtonProps) {
   return (
     <button
       className={styles.wrapper}
       data-type={type}
+      type={htmlType}
       style={{ width: width ?? "fit-content", fontWeight: bold ? 700 : 400 }}
       onClick={onClick}
     >

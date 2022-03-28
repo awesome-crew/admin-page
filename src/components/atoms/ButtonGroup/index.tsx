@@ -1,4 +1,4 @@
-import { Button, ButtonType } from "../Button";
+import { Button, ButtonProps, ButtonType } from "../Button";
 
 import styles from "./index.module.scss";
 
@@ -6,15 +6,13 @@ export type ButtonGroupProps = {
   buttons?: Array<
     {
       label: string;
-      type?: ButtonType;
-    } & (
-      | {
-          href: string;
-        }
-      | {
-          onClick: () => void;
-        }
-    )
+    } & Pick<ButtonProps, "type" | "htmlType" | "onClick"> &
+      (
+        | {
+            href: string;
+          }
+        | {}
+      )
   >;
 };
 
