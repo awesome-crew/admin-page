@@ -6,9 +6,9 @@ import Filter, { ListFilterProps } from "./Filter";
 import { useListCount } from "./useListCount";
 import { useListData } from "./useListData";
 
-import styles from "./index.module.scss";
+import { findModel, findSection } from "@/helpers";
 
-import config from "~/admin.config.json";
+import styles from "./index.module.scss";
 
 export type ListTemplateProps<Model> = {
   name: string;
@@ -22,10 +22,8 @@ export function ListTemplate<Model>({
   fields,
   filters,
 }: ListTemplateProps<Model>) {
-  const section = config.sections.find((section) =>
-    section.models.find((model) => model.name === name)
-  );
-  const model = section.models.find((model) => model.name === name);
+  const section = findSection(name);
+  const model = findModel(name);
 
   const data = useListData<Model>(name);
   const count = useListCount(name);
