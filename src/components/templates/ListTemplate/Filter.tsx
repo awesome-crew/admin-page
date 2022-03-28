@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { FilterInput } from "@/components/molecules";
 
-import { BooleanFilter } from "@/components/atoms";
+import { useQuery } from "@/hooks";
 
 import styles from "./Filter.module.scss";
 
@@ -23,62 +23,43 @@ export type ListFilterProps = {
 };
 
 export default function ListFilter({ filters }: ListFilterProps) {
-  const [filterValues, setFilterValues] =
-    useState<{ [name in string]?: any }>();
+  const { query, set } = useQuery();
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const filterValues = filters.reduce((acc, filter) => {
+  const handleChange = (name: string, value: boolean | string | number) => {
+    set({
+      ...query,
+      [name]: value,
+      offset: 0,
+      limit: 20,
+    });
+  };
+
+  const renderInputs = () => {
+    return filters.map((filter) => {
       switch (filter.type) {
         case "boolean":
-          return {
-            ...acc,
-            [filter.name]: urlParams.get(filter.name) ?? "null",
-          };
+          return (
+            <FilterInput.Boolean
+              name={filter.name}
+              value={
+                { true: true, false: false }[query[filter.name].toString()] ??
+                null
+              }
+              onChange={(v) => handleChange(filter.name, v)}
+            />
+          );
       }
-
-      return acc;
-    }, {});
-
-    setFilterValues(filterValues);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleChange = (filterName: string, filterValue: string) => {
-    const urlParams = new URLSearchParams(location.search);
-    const filter = filters.find((filter) => filter.name === filterName);
-    switch (filter.type) {
-      case "boolean":
-        if (filterValue === "null") {
-          urlParams.delete(filter.name);
-          break;
-        }
-        urlParams.set(filter.name, filterValue);
-    }
-
-    urlParams.set("offset", "0");
-    urlParams.set("limit", "20");
-
-    location.search = urlParams.toString();
+    });
   };
+
+  if (!query) {
+    return null;
+  }
 
   return (
     <section className={styles.wrapper}>
       <h2 className={styles.title}>Filter</h2>
-      {filterValues &&
-        filters.map((filter) => {
-          switch (filter.type) {
-            case "boolean":
-              return (
-                <BooleanFilter
-                  name={filter.name}
-                  value={filterValues[filter.name]}
-                  onChange={handleChange}
-                />
-              );
-          }
-        })}
+      {renderInputs()}
     </section>
   );
 }
