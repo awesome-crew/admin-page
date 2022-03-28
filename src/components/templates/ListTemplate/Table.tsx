@@ -16,7 +16,7 @@ export type ListTableProps<Model> = {
 
   modelName: string;
   data: Model[];
-  count: number;
+  count?: number;
   fields: Array<
     | string
     | { label: string; name: string }
@@ -91,7 +91,7 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
         </thead>
         <tbody>{props.data?.map(renderRecord)}</tbody>
       </table>
-      <Paginator count={props.count} />
+      {props.count && <Paginator count={props.count} />}
     </div>
   );
 }
