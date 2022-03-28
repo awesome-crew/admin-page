@@ -38,7 +38,10 @@ export function ListTemplate<Model>({
       <span className={styles.breadcrumb}>
         {section.name} / {model.label}
       </span>
-      <h1 className={styles.title}>List</h1>
+      <h1 className={styles.title}>
+        List
+        <span className={styles.count}>{count}</span>
+      </h1>
       <div className={styles.actions}>
         {model.searchField != null && <SearchBar field={model.searchField} />}
         <Buttons buttons={buttons}>
