@@ -6,6 +6,7 @@
     "oages",
     "deps",
     "hooks",
-    "icons"
+    "icons",
+    "models"
   ]
 }
