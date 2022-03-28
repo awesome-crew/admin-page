@@ -11,7 +11,7 @@ export type ButtonProps = PropsWithChildren<{
   type?: ButtonType;
   /** @default true */
   bold?: boolean;
-  onClick?: () => void;
+  onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
 }>;
 

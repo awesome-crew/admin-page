@@ -4,6 +4,8 @@ import { getCookie } from "../helpers";
 
 import config from "~/admin.config.json";
 
+export const API_URL = config.apiUrl;
+
 class RequestConfig {
   public baseURL: string;
   public headers?: any;

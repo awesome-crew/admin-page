@@ -1,4 +1,4 @@
-import { Button, ButtonProps, ButtonType } from "../Button";
+import { Button, ButtonProps } from "../Button";
 
 import styles from "./index.module.scss";
 
