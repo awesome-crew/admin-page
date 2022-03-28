@@ -13,14 +13,17 @@ export async function middleware(req: NextRequest) {
     if (!accessToken) {
       throw new Error("로그인 안 되어있음");
     }
-
-    await fetch(config.apiUrl + "/auth/verify", {
+    const response = await fetch(config.apiUrl + "/auth/verify", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "content-type": "application/json",
       },
     });
+    if (response.status === 401) {
+      const { message } = await response.json();
+      throw new Error(message);
+    }
 
     return NextResponse.next();
   } catch (err) {
