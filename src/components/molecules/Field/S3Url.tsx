@@ -7,7 +7,7 @@ import { CommonService } from "@/services";
 
 import { BaseField, BaseFieldProps } from "./Base";
 
-export function ImageUrlField(props: Omit<BaseFieldProps<string>, "children">) {
+export function S3UrlField(props: Omit<BaseFieldProps<string>, "children">) {
   const { name, value, editable = true } = props;
 
   const [isUploading, setUploading] = useState(false);
@@ -18,7 +18,7 @@ export function ImageUrlField(props: Omit<BaseFieldProps<string>, "children">) {
     e.preventDefault();
 
     if (isUploading) {
-      alert("업로드 중인 이미지가 있습니다");
+      alert("업로드 중인 파일이 있습니다");
       return;
     }
 
@@ -30,15 +30,21 @@ export function ImageUrlField(props: Omit<BaseFieldProps<string>, "children">) {
         [name]: url,
       });
     } catch {
-      alert("이미지 업로드에 실패했습니다!");
+      alert("업로드에 실패했습니다!");
     } finally {
       setUploading(false);
     }
   };
 
+  const url = form[name] ?? value;
+
   return (
     <BaseField {...props}>
-      <img src={form[name] ?? value} />
+      {url && (
+        <a href={url} download target="_self">
+          {url}
+        </a>
+      )}
       {editable && <input type="file" onChange={handleChange} />}
     </BaseField>
   );

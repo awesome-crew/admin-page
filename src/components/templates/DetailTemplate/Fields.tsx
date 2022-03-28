@@ -22,7 +22,7 @@ export default function DetailFields<Model>({
         number: Field.Number,
         text: Field.Text,
         imageUrl: Field.ImageUrl,
-        s3Url: Field.String,
+        s3Url: Field.S3Url,
         boolean: Field.Boolean,
       }[field.type];
     } else {
