@@ -96,17 +96,26 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
   );
 }
 
-function Cell({ children }: { children: string | number | ReactNode }) {
+function Cell({
+  children,
+}: {
+  children: string | number | boolean | ReactNode;
+}) {
   const isDate = (input: unknown): input is string =>
     typeof input === "string" && dayjs(input).isValid();
 
-  return (
-    <td>
-      {isDate(children)
-        ? dayjs(children).format("YYYY/MM/DD HH:mm:ss")
-        : children}
-    </td>
-  );
+  const renderChildren = () => {
+    if (isDate(children)) {
+      return dayjs(children).format("YYYY/MM/DD HH:mm:ss");
+    }
+    if (typeof children === "boolean") {
+      return children === true ? "✅" : "❌";
+    }
+
+    return children;
+  };
+
+  return <td>{renderChildren()}</td>;
 }
 
 const PAGINATOR_SIZE = 5;
