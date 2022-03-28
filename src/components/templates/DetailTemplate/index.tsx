@@ -41,12 +41,33 @@ export function DetailTemplate<Model>({
     }
   };
 
+  const deleteModel = async () => {
+    if (
+      !confirm("삭제된 데이터는 복구할 수 없습니다.\n정말로 삭제하시겠습니까?")
+    ) {
+      return;
+    }
+
+    try {
+      await api.delete(`/${name}s/${pk}`);
+      alert("삭제되었습니다.");
+      history.back();
+    } catch {
+      alert("실패했습니다.");
+    }
+  };
+
   const getButtons = (): ButtonGroupProps["buttons"] => {
     return [
       model.edit && {
         label: "저장",
         type: "primary",
         onClick: save,
+      },
+      model.delete && {
+        label: "삭제",
+        type: "danger",
+        onClick: deleteModel,
       },
       ...(typeof buttons === "function" ? buttons(data) : buttons ?? []),
     ];
