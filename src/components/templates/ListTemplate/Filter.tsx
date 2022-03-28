@@ -51,6 +51,16 @@ export default function ListFilter({ filters }: ListFilterProps) {
               onChange={(v) => handleChange(filter.name, v)}
             />
           );
+        case "enum":
+          return (
+            <FilterInput.Select
+              key={filter.name}
+              label={filter.label}
+              value={query[filter.name]?.toString() ?? null}
+              onChange={(v) => handleChange(filter.name, v)}
+              options={filter.enumValues}
+            />
+          );
       }
     });
   };

@@ -14,7 +14,7 @@ export default function SelectFilterInput<Value>({
   return (
     <div className={styles.wrapper}>
       <p className={styles.name}>{label}</p>
-      {options.map((option) => (
+      {[{ label: "상관없음", value: null }, ...options].map((option) => (
         <p
           key={option.label}
           className={styles.item}
@@ -33,7 +33,6 @@ export function BooleanFilterInput(props: FilterInputProps<boolean>) {
     <SelectFilterInput
       {...props}
       options={[
-        { label: "상관없음", value: null },
         { label: "네", value: true },
         { label: "아니오", value: false },
       ]}

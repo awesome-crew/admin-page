@@ -37,7 +37,24 @@ export default function Users() {
           },
           { label: "가입일시", name: "createdAt" },
         ]}
-        filters={[{ name: "isMento", label: "멘토계정여부", type: "boolean" }]}
+        filters={[
+          { name: "isMento", label: "멘토계정여부", type: "boolean" },
+          {
+            name: "asdf",
+            label: "인증방식",
+            type: "enum",
+            enumValues: [
+              {
+                label: "카카오",
+                value: "Kakako",
+              },
+              {
+                label: "애플",
+                value: "Apple",
+              },
+            ],
+          },
+        ]}
       />
     </MainLayout>
   );
