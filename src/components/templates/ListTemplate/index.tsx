@@ -31,7 +31,7 @@ export function ListTemplate<Model>({
   const getButtons = () => {
     return [
       model.create && { label: "Create new", href: `/${name}s/create` },
-      ...buttons,
+      ...(buttons ?? []),
     ];
   };
 
