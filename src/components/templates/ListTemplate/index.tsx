@@ -1,8 +1,5 @@
-import Link from "next/link";
-
-import { Button } from "@/components/atoms";
+import { ButtonGroup, ButtonGroupProps } from "@/components/atoms";
 import SearchBar from "./SearchBar";
-import Buttons, { ListButtonsProps } from "./Buttons";
 import Table, { ListTableProps } from "./Table";
 import Filter, { ListFilterProps } from "./Filter";
 
@@ -16,7 +13,7 @@ import config from "~/admin.config.json";
 export type ListTemplateProps<Model> = {
   name: string;
   filters?: ListFilterProps["filters"];
-} & Pick<ListButtonsProps, "buttons"> &
+} & Pick<ButtonGroupProps, "buttons"> &
   Pick<ListTableProps<Model>, "fields">;
 
 export function ListTemplate<Model>({
@@ -33,6 +30,13 @@ export function ListTemplate<Model>({
   const data = useListData<Model>(name);
   const count = useListCount(name);
 
+  const getButtons = () => {
+    return [
+      model.create && { label: "Create new", href: `/${name}s/create` },
+      ...buttons,
+    ];
+  };
+
   return (
     <>
       <span className={styles.breadcrumb}>
@@ -44,15 +48,7 @@ export function ListTemplate<Model>({
       </h1>
       <div className={styles.actions}>
         {model.searchField != null && <SearchBar field={model.searchField} />}
-        <Buttons buttons={buttons}>
-          {model.create === true && (
-            <Link href={`/${name}s/create`}>
-              <a>
-                <Button>Create new</Button>
-              </a>
-            </Link>
-          )}
-        </Buttons>
+        <ButtonGroup buttons={getButtons()} />
       </div>
       <div className={styles.body}>
         <Table
