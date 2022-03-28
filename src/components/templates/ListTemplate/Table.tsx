@@ -124,7 +124,6 @@ function Paginator({ count }: { count: number }) {
   const max = count ? Math.min(min + PAGINATOR_SIZE - 1, lastPage) : min;
 
   const move = (to: number) => {
-    console.log(to);
     if (to < 0 || to > lastPage) {
       return;
     }
