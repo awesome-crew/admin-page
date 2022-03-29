@@ -1,8 +1,8 @@
-import { Category } from './category.model';
-import { BaseId, Image } from './common.model';
-import { Folder } from './folder.model';
-import { Tag } from './tag.model';
-import { User } from './user.model';
+import { Category } from "./category.model";
+import { BaseId, Image } from "./common.model";
+import { Folder } from "./folder.model";
+import { Tag } from "./tag.model";
+import { User } from "./user.model";
 
 export class ProjectImage extends Image {
   project: Project;
@@ -38,4 +38,8 @@ export class Project extends BaseId {
   isLiking: boolean;
   isBookmarking: boolean;
   isMine: boolean;
+
+  static getThumbnail(project: Project) {
+    return [...project.images].sort((a, b) => a.order - b.order)[0].url;
+  }
 }
