@@ -1,10 +1,10 @@
-import { Authentication } from './auth.model';
-import { BaseId } from './common.model';
-import { SchoolHistory } from './school-history.model';
+import { Authentication } from "./auth.model";
+import { BaseId } from "./common.model";
+import { SchoolHistory } from "./school-history.model";
 
 export enum UserOauthType {
-  Kakao = 'Kakao',
-  Apple = 'Apple',
+  Kakao = "Kakao",
+  Apple = "Apple",
 }
 
 export class User extends BaseId {
@@ -25,6 +25,9 @@ export class User extends BaseId {
 
   isPublic: boolean;
   isMento: boolean;
+  isDormant: boolean;
+
+  lastLoginAt: Date;
 
   isMe: boolean;
   isFollowing: boolean;
