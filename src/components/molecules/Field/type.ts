@@ -13,4 +13,6 @@ export type FieldProps<Value> = {
   value?: Value;
   /** @default true */
   editable?: boolean;
+  /** string,text type인 경우, value의 최대길이제한울 위해 사용 */
+  maxLength?: number;
 };
