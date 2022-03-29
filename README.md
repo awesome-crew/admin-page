@@ -5,7 +5,7 @@
 ### 1. auth
 
 1. `<API_URL>/auth/sign-in` **POST**
-   - request body: code, email
+   - request body: code, password
 2. `<API_URL>/auth/verify` **GET**
 
 ### 2. common
