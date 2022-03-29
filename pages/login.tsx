@@ -7,7 +7,8 @@ import { Seo } from "@/components/atoms";
 import { AuthService } from "@/services";
 
 import styles from "./login.module.scss";
-import config from "~/admin.config.json";
+
+import config from "~/admin.config";
 
 export default function LoginPage() {
   const router = useRouter();
