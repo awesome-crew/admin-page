@@ -59,7 +59,8 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
           <td>
             <TrashCanIcon
               className={styles.delete}
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 deleteRecord((record as any).id);
               }}
             />
