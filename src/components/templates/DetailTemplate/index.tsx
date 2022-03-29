@@ -97,10 +97,10 @@ export function DetailTemplate<Model>({
       {Extras && data && (
         <div className={styles.body}>
           {Extras.map(({ label, render }) => (
-            <Fragment key={label}>
+            <div className={styles.extra} key={label}>
               <h4>{label}</h4>
               {render(data)}
-            </Fragment>
+            </div>
           ))}
         </div>
       )}
