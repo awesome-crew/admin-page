@@ -1,35 +1,46 @@
-import Link from "next/link";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
+import Link from "next/link";
+import cn from "classnames";
 
 import styles from "./index.module.scss";
 
 export type ButtonType = "primary" | "danger" | "secondary";
 
-export type ButtonProps = PropsWithChildren<{
-  width?: string;
-  /** @default 'primary' */
-  type?: ButtonType;
-  /** @default true */
-  bold?: boolean;
-  onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
-  htmlType?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
-}>;
+export type ButtonProps = PropsWithChildren<
+  {
+    width?: string;
+    /** @default 'primary' */
+    type?: ButtonType;
+    /** @default true */
+    bold?: boolean;
+    htmlType?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
+  } & Pick<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    "onClick" | "className" | "style"
+  >
+>;
 
 export function Button({
   width,
   type = "primary",
   children,
   bold = true,
-  onClick,
   htmlType,
+  className,
+  style,
+  ...buttonProps
 }: ButtonProps) {
   return (
     <button
-      className={styles.wrapper}
       data-type={type}
       type={htmlType}
-      style={{ width: width ?? "fit-content", fontWeight: bold ? 700 : 400 }}
-      onClick={onClick}
+      {...buttonProps}
+      className={cn(styles.wrapper, className)}
+      style={{
+        width: width ?? "fit-content",
+        fontWeight: bold ? 700 : 400,
+        ...style,
+      }}
     >
       {children}
     </button>
