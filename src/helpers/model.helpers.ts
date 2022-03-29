@@ -1,4 +1,4 @@
-import config from "~/admin.config.json";
+import config from "~/admin.config";
 
 export const findSection = (modelName: string) => {
   return config.sections.find((section) =>
@@ -8,5 +8,8 @@ export const findSection = (modelName: string) => {
 
 export const findModel = (name: string) => {
   const section = findSection(name);
+  if (!section) {
+    return null;
+  }
   return section.models.find((model) => model.name === name);
 };

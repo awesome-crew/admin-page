@@ -46,4 +46,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-admin.config.json
+admin.config.js
