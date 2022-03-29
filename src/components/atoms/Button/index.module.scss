@@ -1,4 +1,7 @@
 .wrapper {
+  position: relative;
+  overflow: hidden;
+
   height: 40px;
   padding: 0 16px;
   border-radius: 4px;
@@ -12,17 +15,4 @@
   justify-content: center;
 
   font-size: 14px;
-
-  &[data-type="primary"] {
-    background-color: $blue;
-    color: $white;
-  }
-  &[data-type="danger"] {
-    background-color: $red;
-    color: $white;
-  }
-  &[data-type="secondary"] {
-    background-color: $gray3;
-    color: $black;
-  }
 }
