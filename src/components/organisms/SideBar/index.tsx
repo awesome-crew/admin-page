@@ -22,16 +22,18 @@ export function SideBar() {
           <span className={cn(styles.item, styles.section)}>
             {section.name}
           </span>
-          {section.models.map((model) => (
-            <Link key={model.name} href={`/${model.name}s`}>
-              <a
-                className={cn(styles.item, styles.model)}
-                data-current={router.asPath.startsWith(`/${model.name}s`)}
-              >
-                {model.label}
-              </a>
-            </Link>
-          ))}
+          {section.models
+            .filter((model) => model.list !== false)
+            .map((model) => (
+              <Link key={model.name} href={`/${model.name}s`}>
+                <a
+                  className={cn(styles.item, styles.model)}
+                  data-current={router.asPath.startsWith(`/${model.name}s`)}
+                >
+                  {model.label}
+                </a>
+              </Link>
+            ))}
         </React.Fragment>
       ))}
       <div
