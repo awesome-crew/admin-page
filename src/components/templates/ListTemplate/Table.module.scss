@@ -1,6 +1,5 @@
 .wrapper {
   flex: 1;
-  padding: 24px;
 
   background-color: $white;
 
@@ -15,19 +14,33 @@
 
     th,
     td {
-      padding: 16px 0 16px 16px;
+      padding: 12px 0 12px 12px;
       text-align: left;
+      font-size: 14px;
     }
 
     > thead {
       background-color: $gray1;
+      border: 1px solid $gray2;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 16px;
+
+      th {
+        font-weight: 400;
+        color: $gray5;
+      }
     }
     > tbody {
       tr {
-        border-bottom: 1px solid $gray5;
+        border-bottom: 1px solid $gray2;
+        td {
+          color: $gray8;
+        }
 
+        transition: all 0.3s;
         &:hover {
-          background-color: $gray1;
+          background-color: $gray0;
         }
       }
     }
