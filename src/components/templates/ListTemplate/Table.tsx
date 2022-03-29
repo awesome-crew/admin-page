@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import dayjs from "dayjs";
 
+import { Empty } from "@/components/atoms";
 import { ChevronLeftIcon, ChevronRightIcon, TrashCanIcon } from "@/icons";
 
 import { findModel } from "@/helpers";
@@ -84,6 +85,8 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
     location.reload();
   };
 
+  const isEmpty = props.data?.length === 0;
+
   return (
     <div className={styles.wrapper}>
       <table>
@@ -95,7 +98,14 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
             {hasDelete && <th />}
           </tr>
         </thead>
-        <tbody>{props.data?.map(renderRecord)}</tbody>
+        <tbody>
+          {isEmpty && (
+            <td colSpan={fieldNames.length + (hasDelete ? 1 : 0)}>
+              <Empty />
+            </td>
+          )}
+          {props.data?.map(renderRecord)}
+        </tbody>
       </table>
       {props.count && <Paginator count={props.count} />}
     </div>
