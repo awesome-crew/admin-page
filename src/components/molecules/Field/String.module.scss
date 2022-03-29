@@ -1,0 +1,15 @@
+.wrapper {
+  width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  .count {
+    margin: 0;
+    float: right;
+    color: #00000073;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+}
