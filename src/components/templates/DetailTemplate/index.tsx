@@ -1,3 +1,5 @@
+import { Fragment, ReactNode } from "react";
+
 import { ButtonGroup, ButtonGroupProps, Seo } from "@/components/atoms";
 import Fields, { DetailFieldsProps } from "./Fields";
 import { ArrowLeftIcon } from "@/icons";
@@ -6,9 +8,9 @@ import { useDetailData } from "./useDetailData";
 
 import { findModel } from "@/helpers";
 import { useForm } from "@/hooks";
+import { api } from "@/services";
 
 import styles from "./index.module.scss";
-import { api } from "@/services";
 
 export type DetailTemplateProps<Model> = {
   name: string;
@@ -18,6 +20,10 @@ export type DetailTemplateProps<Model> = {
     | ButtonGroupProps["buttons"]
     | ((model: Model) => ButtonGroupProps["buttons"]);
   fields: DetailFieldsProps<Model>["fields"];
+  Extras?: Array<{
+    label: string;
+    render: (model: Model) => ReactNode;
+  }>;
 };
 
 export function DetailTemplate<Model>({
@@ -26,6 +32,7 @@ export function DetailTemplate<Model>({
   pk,
   buttons,
   fields,
+  Extras,
 }: DetailTemplateProps<Model>) {
   const model = findModel(name);
   const data = useDetailData<Model>(name, pk);
@@ -87,6 +94,16 @@ export function DetailTemplate<Model>({
       <div className={styles.body}>
         <Fields data={data} fields={fields} />
       </div>
+      {Extras && data && (
+        <div className={styles.body}>
+          {Extras.map(({ label, render }) => (
+            <Fragment key={label}>
+              <h4>{label}</h4>
+              {render(data)}
+            </Fragment>
+          ))}
+        </div>
+      )}
     </>
   );
 }
