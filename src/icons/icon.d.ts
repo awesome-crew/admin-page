@@ -1,7 +1,6 @@
-import { CSSProperties } from "react";
+import { CSSProperties, SVGAttributes } from "react";
 
-export type IconProps = {
-  className?: string;
-  style?: CSSProperties;
-  onClick?: () => void;
-};
+export type IconProps = Pick<
+  SVGAttributes<HTMLOrSVGElement>,
+  "className" | "style" | "onClick" | "fill"
+>;
