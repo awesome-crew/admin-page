@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-import config from "~/admin.config.json";
+import config from "~/admin.config";
 
 export type SeoProps = {
   title?: string;

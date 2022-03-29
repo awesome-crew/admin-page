@@ -3,10 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import cn from "classnames";
 
-import styles from "./index.module.scss";
-import config from "~/admin.config.json";
 import { LogoutIcon } from "@/icons";
+
 import { AuthService } from "@/services";
+
+import styles from "./index.module.scss";
+
+import config from "~/admin.config";
 
 export function SideBar() {
   const router = useRouter();

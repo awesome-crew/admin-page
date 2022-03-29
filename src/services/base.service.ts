@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, Method } from "axios";
 
 import { getCookie } from "../helpers";
 
-import config from "~/admin.config.json";
+import config from "~/admin.config";
 
 export const API_URL = config.apiUrl;
 
