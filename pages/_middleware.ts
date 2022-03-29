@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import config from "../admin.config.json";
+import config from "../admin.config";
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
