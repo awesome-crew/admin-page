@@ -1,3 +1,4 @@
+import { BaseField } from "./Base";
 import { BooleanField } from "./Boolean";
 import { ImageUrlField } from "./ImageUrl";
 import { NumberField } from "./Number";
@@ -8,6 +9,7 @@ import { TextField } from "./Text";
 export * from "./type";
 
 export const Field = {
+  Base: BaseField,
   Number: NumberField,
   String: StringField,
   Text: TextField,

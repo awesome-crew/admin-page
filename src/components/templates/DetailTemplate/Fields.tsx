@@ -1,17 +1,31 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, ReactNode } from "react";
 
 import { Field, FieldProps } from "@/components/molecules";
 
+type DetailFieldData<Model> =
+  | {
+      label: string;
+      render: (model: Model) => ReactNode;
+    }
+  | FieldProps<Model[any]>;
 export type DetailFieldsProps<Model> = {
   data: Model;
-  fields: FieldProps<Model[any]>[];
+  fields: DetailFieldData<Model>[];
 };
 
 export default function DetailFields<Model>({
   data,
   fields,
 }: DetailFieldsProps<Model>) {
-  const renderField = (field: FieldProps<Model[any]>) => {
+  const renderField = (field: DetailFieldData<Model>) => {
+    if ("render" in field) {
+      const { label, render } = field;
+      return (
+        <Field.Base label={label} name={label}>
+          {render(data)}
+        </Field.Base>
+      );
+    }
     const value = field.value ?? data[field.name as keyof Model];
 
     let FieldComponent: FunctionComponent<any> = Field.String;
