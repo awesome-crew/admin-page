@@ -2,9 +2,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { ChangeEvent, useState } from "react";
 
+import { Loading } from "@/components/atoms";
+import { PlusIcon } from "@/icons";
+
 import { useForm } from "@/hooks";
 import { CommonService } from "@/services";
-import { PlusIcon, SpinIcon } from "@/icons";
 
 import { BaseField, BaseFieldProps } from "./Base";
 import styles from "./ImageUrl.module.scss";
@@ -51,7 +53,7 @@ export function ImageUrlField(props: Omit<BaseFieldProps<string>, "children">) {
           {currentValue && <img src={currentValue} />}
           {!currentValue && (
             <>
-              {isUploading ? <SpinIcon /> : <PlusIcon />}
+              {isUploading ? <Loading /> : <PlusIcon />}
               <p className={styles.upload}>Upload</p>
             </>
           )}

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import dayjs from "dayjs";
 
-import { Empty } from "@/components/atoms";
+import { Empty, Loading } from "@/components/atoms";
 import { ChevronLeftIcon, ChevronRightIcon, TrashCanIcon } from "@/icons";
 
 import { findModel } from "@/helpers";
@@ -85,6 +85,7 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
     location.reload();
   };
 
+  const isLoading = props.data == null;
   const isEmpty = props.data?.length === 0;
 
   return (
@@ -99,9 +100,10 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
           </tr>
         </thead>
         <tbody>
-          {isEmpty && (
+          {(isLoading || isEmpty) && (
             <td colSpan={fieldNames.length + (hasDelete ? 1 : 0)}>
-              <Empty />
+              {isLoading && <Loading size="large" />}
+              {isEmpty && <Empty />}
             </td>
           )}
           {props.data?.map(renderRecord)}
