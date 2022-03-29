@@ -2,10 +2,20 @@ import { useRouter } from "next/router";
 
 import { DetailTemplate, MainLayout } from "@/components/templates";
 
-import { User } from "@/models";
+import { Authentication, Folder, Project, SchoolHistory, User } from "@/models";
+import { useData } from "@/hooks";
+import ListTable from "@/components/templates/ListTemplate/Table";
 
 export default function UserDetail() {
   const router = useRouter();
+
+  const id = Number(router.query.id);
+
+  const authentications = useData<Authentication[]>(
+    `/users/${id}/authentications`
+  );
+  const folders = useData<Folder[]>(`/users/${id}/folders`);
+  const projects = useData<Project[]>(`/users/${id}/projects`);
 
   return (
     <MainLayout>
@@ -34,6 +44,62 @@ export default function UserDetail() {
           { label: "팔로잉 수", name: "followCount" },
           { label: "멘토여부", name: "isMento" },
           { label: "공개여부", name: "isPublic" },
+        ]}
+        Extras={[
+          {
+            label: "학교 정보",
+            render: (user) => (
+              <ListTable<SchoolHistory>
+                modelName="schoolHistory"
+                data={user.schoolHistories}
+                fields={[
+                  { label: "이름", value: (record) => record.school.name },
+                  { label: "시작년도", name: "startYear" },
+                  { label: "종료년도", name: "endYear" },
+                  { label: "재학중", name: "isAttending" },
+                ]}
+              />
+            ),
+          },
+          {
+            label: "계정 정보",
+            render: () => (
+              <ListTable<Authentication>
+                modelName="authentication"
+                data={authentications}
+                fields={[
+                  {
+                    label: "구분",
+                    value: (record) =>
+                      ({ Apple: "애플", Kakao: "카카오", Email: "이메일" }[
+                        record.type
+                      ]),
+                  },
+                  { label: "이메일", value: (record) => record.email ?? "-" },
+                ]}
+              />
+            ),
+          },
+          {
+            label: "폴더",
+            render: () => (
+              <ListTable<Folder>
+                modelName="folder"
+                data={folders}
+                fields={["id", { label: "이름", name: "name" }]}
+              />
+            ),
+          },
+          {
+            label: "프로젝트",
+            render: () => (
+              <ListTable<Project>
+                modelName="project"
+                data={projects}
+                fields={["id", { label: "제목", name: "name" }]}
+              />
+            ),
+          },
         ]}
       />
     </MainLayout>
