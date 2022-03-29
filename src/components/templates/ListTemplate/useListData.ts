@@ -5,7 +5,7 @@ import { api } from "@/services";
 import { PAGE_SIZE } from "./constants";
 
 export const useListData = <Model>(modelName: string) => {
-  const [data, setData] = useState<Model[]>([]);
+  const [data, setData] = useState<Model[]>();
 
   const fetch = async () => {
     const params = new URLSearchParams(location.search);
