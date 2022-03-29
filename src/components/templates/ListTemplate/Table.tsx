@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 
 import { ChevronLeftIcon, ChevronRightIcon, TrashCanIcon } from "@/icons";
 
+import { findModel } from "@/helpers";
 import { useQuery } from "@/hooks";
 import { api } from "@/services";
 
@@ -11,9 +12,6 @@ import { PAGE_SIZE } from "./constants";
 import styles from "./Table.module.scss";
 
 export type ListTableProps<Model> = {
-  detail?: boolean;
-  delete?: boolean;
-
   modelName: string;
   data: Model[];
   count?: number;
@@ -26,6 +24,11 @@ export type ListTableProps<Model> = {
 };
 
 export default function ListTable<Model>(props: ListTableProps<Model>) {
+  const model = findModel(props.modelName);
+
+  const hasDetail = model?.detail;
+  const hasDelete = model?.delete;
+
   const fieldNames = props.fields.map((field) => {
     if (typeof field === "string") {
       return field;
@@ -41,8 +44,10 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
     return (
       <tr
         key={JSON.stringify(record)}
-        style={{ cursor: props.detail ? "pointer" : "default" }}
-        onClick={() => routeToDetail((record as any).id)}
+        style={{ cursor: hasDetail ? "pointer" : "default" }}
+        onClick={
+          hasDetail ? () => routeToDetail((record as any).id) : () => null
+        }
       >
         {props.fields.map((field) => (
           <Cell key={JSON.stringify(field)}>
@@ -55,7 +60,7 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
               : field.render(record)}
           </Cell>
         ))}
-        {props.delete && (
+        {hasDelete && (
           <td>
             <TrashCanIcon
               className={styles.delete}
@@ -87,7 +92,7 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
             {fieldNames.map((name) => (
               <th key={name}>{name}</th>
             ))}
-            {props.delete && <th />}
+            {hasDelete && <th />}
           </tr>
         </thead>
         <tbody>{props.data?.map(renderRecord)}</tbody>

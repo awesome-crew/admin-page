@@ -55,8 +55,6 @@ export function ListTemplate<Model>({
           data={data}
           count={count}
           fields={fields}
-          delete={model.delete}
-          detail={model.detail}
         />
         {filters && <Filter filters={filters} />}
       </div>
