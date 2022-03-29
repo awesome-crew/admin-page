@@ -40,7 +40,7 @@ export function CreateTemplate<Model>({
 
   return (
     <>
-      <Seo title={model.label} />
+      <Seo title={model.label + " 생성"} />
       <span className={styles.breadcrumb}>
         {section.name} / {model.label}
       </span>
