@@ -12,10 +12,10 @@ export default function UserDetail() {
   const id = Number(router.query.id);
 
   const authentications = useData<Authentication[]>(
-    `/users/${id}/authentications`
+    id && `/users/${id}/authentications`
   );
-  const folders = useData<Folder[]>(`/users/${id}/folders`);
-  const projects = useData<Project[]>(`/users/${id}/projects`);
+  const folders = useData<Folder[]>(id && `/users/${id}/folders`);
+  const projects = useData<Project[]>(id && `/users/${id}/projects`);
 
   return (
     <MainLayout>
