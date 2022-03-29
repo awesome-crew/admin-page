@@ -8,6 +8,7 @@
     "hooks",
     "icons",
     "models",
-    "styles"
+    "styles",
+    "constants"
   ]
 }
