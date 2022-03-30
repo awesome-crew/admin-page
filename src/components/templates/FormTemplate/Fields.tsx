@@ -3,7 +3,10 @@ import { FunctionComponent } from "react";
 import { Field, FieldProps } from "@/components/molecules";
 
 export type FormFieldsProps<Model> = {
-  fields: Required<Pick<FieldProps<Model[any]>, "label" | "name" | "type">>[];
+  fields: Pick<
+    FieldProps<Model[any]>,
+    "label" | "name" | "type" | "maxLength"
+  >[];
 };
 
 export default function FormFields<Model>({ fields }: FormFieldsProps<Model>) {

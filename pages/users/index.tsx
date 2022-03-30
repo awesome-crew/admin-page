@@ -10,7 +10,7 @@ export default function Users() {
     <MainLayout>
       <ListTemplate<User>
         name="user"
-        buttons={[{ label: "전체 삭제", type: "danger", onClick: console.log }]}
+        buttons={[{ label: "멘토 계정 생성", href: "/users/create-mentor" }]}
         fields={[
           "id",
           {
