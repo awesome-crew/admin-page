@@ -1,11 +1,12 @@
 import { IconProps } from "./icon";
 
-export function PlusIcon(props: IconProps) {
+export function XIcon(props: IconProps) {
   return (
     <svg
       viewBox="64 64 896 896"
       fill="black"
       style={{ width: 14, height: 14 }}
+      transform="rotate(45 0 0)"
       {...props}
     >
       <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"></path>
