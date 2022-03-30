@@ -1,5 +1,4 @@
-import { MainLayout } from "@/components/templates";
-import { CreateTemplate } from "@/components/templates/CreateTemplate";
+import { MainLayout, CreateTemplate } from "@/components/templates";
 
 export default function TagCreate() {
   return (

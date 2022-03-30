@@ -1,0 +1,27 @@
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-size: 32px;
+
+  margin-bottom: 16px;
+
+  .back {
+    width: 26px;
+    height: 26px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  .submit {
+    margin-left: auto;
+  }
+}
+
+.body {
+  width: 100%;
+  padding: 24px;
+
+  background-color: $white;
+}
