@@ -90,6 +90,7 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
 
   return (
     <div className={styles.wrapper}>
+      {props.count && <Paginator count={props.count} />}
       <table>
         <thead>
           <tr>
