@@ -4,9 +4,11 @@ import { getCookie } from "@/helpers";
 import { api } from "./base.service";
 
 class CommonService {
-  async upload(file: File) {
+  async upload(files: File[]) {
     const formData = new FormData();
-    formData.append("files", file);
+    files.forEach((file) => {
+      formData.append("files", file);
+    });
 
     const urls = await api.post<string[]>("/common/upload", formData, {
       headers: {
@@ -14,7 +16,7 @@ class CommonService {
         Authorization: `Bearer ${getCookie(CookieKey.ACCESS_TOKEN)}`,
       },
     });
-    return urls[0];
+    return urls;
   }
 }
 

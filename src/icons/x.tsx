@@ -5,7 +5,6 @@ export function XIcon(props: IconProps) {
     <svg
       viewBox="64 64 896 896"
       fill="black"
-      style={{ width: 14, height: 14 }}
       transform="rotate(45 0 0)"
       {...props}
     >

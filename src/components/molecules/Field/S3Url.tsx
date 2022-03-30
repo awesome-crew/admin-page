@@ -34,8 +34,8 @@ export function S3UrlField(props: Omit<BaseFieldProps<string>, "children">) {
 
     try {
       setUploading(true);
-      const [file] = Array.from<File>(e.target.files);
-      const url = await CommonService.upload(file);
+      const files = Array.from<File>(e.target.files);
+      const [url] = await CommonService.upload(files);
       update({
         [name]: url,
       });
