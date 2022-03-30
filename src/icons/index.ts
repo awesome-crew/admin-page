@@ -7,4 +7,5 @@ export * from "./plus";
 export * from "./search";
 export * from "./spin";
 export * from "./trash-can";
+export * from "./upload";
 export * from "./x";
