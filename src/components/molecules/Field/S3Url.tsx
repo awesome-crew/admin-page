@@ -1,18 +1,28 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 import { useForm } from "@/hooks";
+import { UploadIcon, XIcon } from "@/icons";
 import { CommonService } from "@/services";
 
 import { BaseField, BaseFieldProps } from "./Base";
+import styles from "./S3Url.module.scss";
 
 export function S3UrlField(props: Omit<BaseFieldProps<string>, "children">) {
   const { name, value, editable = true } = props;
 
   const [isUploading, setUploading] = useState(false);
+  const inputRef = useRef(null);
 
   const { form, update } = useForm();
+
+  useEffect(() => {
+    update({
+      [name]: value,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -36,16 +46,38 @@ export function S3UrlField(props: Omit<BaseFieldProps<string>, "children">) {
     }
   };
 
-  const url = form[name] ?? value;
+  const resetValue = () => {
+    update({
+      [name]: null,
+    });
+  };
 
   return (
     <BaseField {...props}>
-      {url && (
-        <a href={url} download target="_self">
-          {url}
-        </a>
+      {form[name] && (
+        <div className={styles["upload-item"]}>
+          <a href={form[name]} download target="_self">
+            {form[name]}
+          </a>
+          {editable && (
+            <button className={styles["reset-button"]} onClick={resetValue}>
+              <XIcon />
+            </button>
+          )}
+        </div>
       )}
-      {editable && <input type="file" onChange={handleChange} />}
+      {editable && (
+        <button
+          className={styles["upload-button"]}
+          onClick={() => {
+            inputRef.current.click();
+          }}
+        >
+          <UploadIcon />
+          <p className={styles["upload-text"]}>Upload</p>
+          <input type="file" ref={inputRef} onChange={handleChange} hidden />
+        </button>
+      )}
     </BaseField>
   );
 }
