@@ -76,7 +76,7 @@ export function ImageUploadPreview({
 }) {
   return (
     <div className={styles.preview}>
-      <img src={src} />
+      <img src={src + "?w=256"} />
       <div className={styles.overlay} onClick={(e) => e.preventDefault()}>
         <XIcon
           onClick={(e) => {
