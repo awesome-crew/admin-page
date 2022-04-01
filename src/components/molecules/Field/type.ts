@@ -5,7 +5,8 @@ export type FieldType =
   | "imageUrl"
   | "s3Url"
   | "boolean"
-  | "imageUrlArray";
+  | "imageUrlArray"
+  | "enum";
 
 export type FieldProps<Value> = {
   name: string;
@@ -16,4 +17,5 @@ export type FieldProps<Value> = {
   editable?: boolean;
   /** string,text type인 경우, value의 최대길이제한울 위해 사용 */
   maxLength?: number;
+  enumValues?: Array<{ label: string; value: Value }>;
 };
