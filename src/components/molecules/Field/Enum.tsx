@@ -1,4 +1,4 @@
-import { Radio } from "@/components/atoms";
+import { RadioGroup } from "@/components/atoms";
 import { useForm } from "@/hooks";
 
 import { BaseField, BaseFieldProps } from "./Base";
@@ -11,22 +11,14 @@ export function EnumField(props: Omit<BaseFieldProps<string>, "children">) {
   return (
     <BaseField {...props}>
       {editable ? (
-        <>
-          {enumValues.map((enumValue, index) => (
-            <Radio
-              key={index}
-              name={name}
-              value={enumValue.value}
-              label={enumValue.label}
-              defaultChecked={value === enumValue.value}
-              onChange={(e) => {
-                update({
-                  [name]: e.target.value === "true",
-                });
-              }}
-            />
-          ))}
-        </>
+        <RadioGroup
+          name={name}
+          value={value}
+          radioValues={enumValues}
+          onChange={(e) => {
+            update({ [name]: e.target.value });
+          }}
+        />
       ) : (
         props.value
       )}

@@ -1,4 +1,4 @@
-import { Radio } from "@/components/atoms";
+import { RadioGroup } from "@/components/atoms";
 import { useForm } from "@/hooks";
 
 import { BaseField, BaseFieldProps } from "./Base";
@@ -22,22 +22,14 @@ export function BooleanField(props: Omit<BaseFieldProps<boolean>, "children">) {
   return (
     <BaseField {...props}>
       {editable ? (
-        <>
-          {BOOLEAN_VALUES.map((booleanValue, index) => (
-            <Radio
-              key={index}
-              name={name}
-              value={booleanValue.value?.toString()}
-              label={booleanValue.label}
-              defaultChecked={value === booleanValue.value}
-              onChange={(e) => {
-                update({
-                  [name]: e.target.value === "true",
-                });
-              }}
-            />
-          ))}
-        </>
+        <RadioGroup
+          name={name}
+          value={value}
+          radioValues={BOOLEAN_VALUES}
+          onChange={(e) => {
+            update({ [name]: e.target.value === "true" });
+          }}
+        />
       ) : (
         BOOLEAN_VALUES.find(({ value }) => value === props.value).label
       )}
