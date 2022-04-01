@@ -13,6 +13,10 @@
 
   background-color: $white;
   box-shadow: $shadow-medium;
+
+  * {
+    user-select: none;
+  }
 }
 
 .item {

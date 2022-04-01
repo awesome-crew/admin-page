@@ -42,8 +42,8 @@ function Section({ name, models }: AdminSection) {
 
   const listRef = useRef<HTMLUListElement>();
   const { mounted, rendered } = useDelayedRender(isOpen, {
-    enterDelay: 100,
-    exitDelay: 100,
+    enterDelay: 10,
+    exitDelay: 200,
   });
 
   return (
@@ -57,12 +57,13 @@ function Section({ name, models }: AdminSection) {
           ref={listRef}
           className={styles.list}
           style={{
-            height: !listRef.current
-              ? "fit-content"
-              : rendered
-              ? listRef.current.scrollHeight
-              : 0,
-            opacity: !listRef.current ? 1 : rendered ? 1 : 0,
+            height:
+              typeof window === "undefined"
+                ? "fit-content"
+                : rendered
+                ? listRef.current.scrollHeight
+                : 0,
+            opacity: typeof window === "undefined" ? 1 : rendered ? 1 : 0,
           }}
         >
           {models
