@@ -4,7 +4,7 @@ import { Field, FieldProps } from "@/components/molecules";
 
 export type FormFieldData<Model> = Pick<
   FieldProps<Model[any]>,
-  "label" | "name" | "type" | "maxLength" | "editable"
+  "label" | "name" | "type" | "maxLength" | "editable" | "enumValues"
 > & {
   value?: any | ((model: Model) => any);
   render?: (model: Model) => ReactNode;
@@ -47,6 +47,7 @@ export default function FormFields<Model>({
         s3Url: Field.S3Url,
         boolean: Field.Boolean,
         imageUrlArray: Field.ImageUrlArray,
+        enum: Field.Enum,
       }[field.type];
     } else {
       if (value != null) {
