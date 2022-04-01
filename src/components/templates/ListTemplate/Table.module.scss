@@ -55,8 +55,8 @@
 }
 
 .delete {
-  margin-left: auto;
-  margin-right: 16px;
+  margin: 0 16px 0 auto;
+
   cursor: pointer;
   transition: all 0.3s;
   &:hover {
