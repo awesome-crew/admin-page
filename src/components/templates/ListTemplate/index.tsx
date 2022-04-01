@@ -1,7 +1,7 @@
-import { ButtonGroup, ButtonGroupProps, Seo } from "@/components/atoms";
 import SearchBar from "./SearchBar";
 import Table, { ListTableProps } from "./Table";
 import Filter, { ListFilterProps } from "./Filter";
+import { Badge, ButtonGroup, ButtonGroupProps, Seo } from "@/components/atoms";
 
 import { useListCount } from "./useListCount";
 import { useListData } from "./useListData";
@@ -43,7 +43,9 @@ export function ListTemplate<Model>({
       </span>
       <h1 className={styles.title}>
         {model.label}
-        <span className={styles.count}>{count}</span>
+        <Badge className={styles.count} type="highlight">
+          {count}
+        </Badge>
       </h1>
       {model.description != null && (
         <p className={styles.description}>{model.description}</p>
