@@ -9,7 +9,9 @@
   font-size: 14px;
 
   input {
-    width: 260px;
+    &[type="text"] {
+      width: 260px;
+    }
   }
   textarea {
     width: 100%;

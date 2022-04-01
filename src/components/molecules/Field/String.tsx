@@ -20,6 +20,7 @@ export function StringField(props: Omit<BaseFieldProps<string>, "children">) {
       {editable ? (
         <div className={styles.wrapper}>
           <input
+            type="text"
             name={name}
             maxLength={maxLength}
             defaultValue={value}
