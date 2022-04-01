@@ -3,6 +3,7 @@ export * from "./chevron-left";
 export * from "./chevron-right";
 export * from "./empty";
 export * from "./logout";
+export * from "./minus";
 export * from "./plus";
 export * from "./search";
 export * from "./spin";
