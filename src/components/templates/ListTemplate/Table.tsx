@@ -26,6 +26,9 @@ export type ListTableFieldData<Model> =
   | { label: string; render: (model: Model) => ReactNode };
 
 export type ListTableProps<Model> = {
+  detail?: boolean;
+  delete?: boolean;
+
   modelName: string;
   data: Model[];
   count?: number;
@@ -35,8 +38,8 @@ export type ListTableProps<Model> = {
 export default function ListTable<Model>(props: ListTableProps<Model>) {
   const model = findModel(props.modelName);
 
-  const hasDetail = model?.detail;
-  const hasDelete = model?.delete;
+  const hasDetail = props.detail ?? model?.detail;
+  const hasDelete = props.delete ?? model?.delete;
 
   const fieldNames = props.fields.map((field) => {
     if (typeof field === "string") {
