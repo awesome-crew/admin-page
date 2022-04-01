@@ -19,16 +19,17 @@ import { PAGE_SIZE } from "./constants";
 
 import styles from "./Table.module.scss";
 
+export type ListTableFieldData<Model> =
+  | string
+  | { label: string; name: string }
+  | { label: string; value: (model: Model) => any }
+  | { label: string; render: (model: Model) => ReactNode };
+
 export type ListTableProps<Model> = {
   modelName: string;
   data: Model[];
   count?: number;
-  fields: Array<
-    | string
-    | { label: string; name: string }
-    | { label: string; value: (model: Model) => any }
-    | { label: string; render: (model: Model) => ReactNode }
-  >;
+  fields: ListTableFieldData<Model>[];
 };
 
 export default function ListTable<Model>(props: ListTableProps<Model>) {
