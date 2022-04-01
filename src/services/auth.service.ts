@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { CookieKey } from "../constants";
 import { removeCookie, setCookie } from "../helpers";
 
@@ -9,7 +10,9 @@ class AuthService {
       code,
       password,
     });
-    setCookie(CookieKey.ACCESS_TOKEN, token);
+    setCookie(CookieKey.ACCESS_TOKEN, token, {
+      expires: dayjs().add(1, "year").toDate(),
+    });
   }
 
   async signout() {
