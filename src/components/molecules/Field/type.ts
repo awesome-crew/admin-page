@@ -6,7 +6,8 @@ export type FieldType =
   | "s3Url"
   | "boolean"
   | "imageUrlArray"
-  | "enum";
+  | "enum"
+  | "stringArray";
 
 export type FieldProps<Value> = {
   name: string;

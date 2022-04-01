@@ -1,0 +1,51 @@
+.wrapper {
+  width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+
+  .inputWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    input {
+      margin-right: 16px;
+    }
+  }
+
+  .list {
+    padding-top: 12px;
+    margin: 0;
+
+    .item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      padding: 12px 24px;
+      margin-bottom: 16px;
+
+      border: 1px solid $gray7;
+      border-radius: 8px;
+
+      &::before {
+        content: "";
+      }
+
+      .remove {
+        width: 16px;
+        height: 16px;
+        margin-left: auto;
+
+        cursor: pointer;
+
+        fill: $gray6;
+        transition: 0.2s;
+        &:hover {
+          fill: $black;
+        }
+      }
+    }
+  }
+}

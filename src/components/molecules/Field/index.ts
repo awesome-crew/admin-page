@@ -7,6 +7,7 @@ import { S3UrlField } from "./S3Url";
 import { StringField } from "./String";
 import { TextField } from "./Text";
 import { ImageUrlArrayField } from "./ImageUrlArray";
+import { StringArrayField } from "./StringArray";
 
 export * from "./type";
 
@@ -20,4 +21,5 @@ export const Field = {
   String: StringField,
   Text: TextField,
   ImageUrlArray: ImageUrlArrayField,
+  StringArray: StringArrayField,
 };

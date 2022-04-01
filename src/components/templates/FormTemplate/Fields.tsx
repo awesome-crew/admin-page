@@ -48,6 +48,7 @@ export default function FormFields<Model>({
         boolean: Field.Boolean,
         imageUrlArray: Field.ImageUrlArray,
         enum: Field.Enum,
+        stringArray: Field.StringArray,
       }[field.type];
     } else {
       if (value != null) {
