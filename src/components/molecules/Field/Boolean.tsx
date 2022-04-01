@@ -27,7 +27,7 @@ export function BooleanField(props: Omit<BaseFieldProps<boolean>, "children">) {
             <Radio
               key={index}
               name={name}
-              value={booleanValue.value}
+              value={booleanValue.value?.toString()}
               label={booleanValue.label}
               defaultChecked={value === booleanValue.value}
               onChange={(e) => {
