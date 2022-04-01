@@ -28,7 +28,7 @@ export default function LoginPage() {
     <>
       <Seo title="Login" />
       <div className={styles.wrapper}>
-        <h1>Log in to {config.name}</h1>
+        <h1>{config.name}에 로그인하세요</h1>
         <Input
           width="22rem"
           scale={1.5}
