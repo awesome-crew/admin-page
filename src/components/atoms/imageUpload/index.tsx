@@ -57,7 +57,7 @@ export function ImageUpload({
       {isPreviewVisible ? (
         <Preview src={value} onRemove={onClear} />
       ) : (
-        <label>
+        <label className={styles.label}>
           {isUploading ? <Loading /> : <PlusIcon />}
           <p className={styles.text}>{uploadText}</p>
           <input type="file" onChange={handleChange} hidden />
