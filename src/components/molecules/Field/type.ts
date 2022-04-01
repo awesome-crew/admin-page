@@ -4,7 +4,8 @@ export type FieldType =
   | "text"
   | "imageUrl"
   | "s3Url"
-  | "boolean";
+  | "boolean"
+  | "imageUrlArray";
 
 export type FieldProps<Value> = {
   name: string;

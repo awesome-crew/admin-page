@@ -7,7 +7,9 @@ type DetailFieldData<Model> =
       label: string;
       render: (model: Model) => ReactNode;
     }
-  | FieldProps<Model[any]>;
+  | (FieldProps<Model[any]> & {
+      value?: any | ((model: Model) => any);
+    });
 export type DetailFieldsProps<Model> = {
   data: Model;
   fields: DetailFieldData<Model>[];
@@ -26,7 +28,11 @@ export default function DetailFields<Model>({
         </Field.Base>
       );
     }
-    const value = field.value ?? data[field.name as keyof Model];
+    const value = field.value
+      ? typeof field.value === "function"
+        ? field.value(data)
+        : field.value
+      : data[field.name as keyof Model];
 
     let FieldComponent: FunctionComponent<any> = Field.String;
 
@@ -38,6 +44,7 @@ export default function DetailFields<Model>({
         imageUrl: Field.ImageUrl,
         s3Url: Field.S3Url,
         boolean: Field.Boolean,
+        imageUrlArray: Field.ImageUrlArray,
       }[field.type];
     } else {
       if (typeof value === "string") {

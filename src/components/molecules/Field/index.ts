@@ -5,6 +5,7 @@ import { NumberField } from "./Number";
 import { S3UrlField } from "./S3Url";
 import { StringField } from "./String";
 import { TextField } from "./Text";
+import { ImageUrlArrayField } from "./ImageUrlArray";
 
 export * from "./type";
 
@@ -16,4 +17,5 @@ export const Field = {
   Boolean: BooleanField,
   ImageUrl: ImageUrlField,
   S3Url: S3UrlField,
+  ImageUrlArray: ImageUrlArrayField,
 };

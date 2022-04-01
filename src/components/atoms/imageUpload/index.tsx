@@ -55,7 +55,7 @@ export function ImageUpload({
   return (
     <div className={styles.wrapper}>
       {isPreviewVisible ? (
-        <Preview src={value} onRemove={onClear} />
+        <ImageUploadPreview src={value} onRemove={onClear} />
       ) : (
         <label className={styles.label}>
           {isUploading ? <Loading /> : <PlusIcon />}
@@ -67,7 +67,13 @@ export function ImageUpload({
   );
 }
 
-function Preview({ src, onRemove }: { src: string; onRemove: () => void }) {
+export function ImageUploadPreview({
+  src,
+  onRemove,
+}: {
+  src: string;
+  onRemove: () => void;
+}) {
   return (
     <div className={styles.preview}>
       <img src={src} />
