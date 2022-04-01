@@ -6,7 +6,13 @@ import { useQuery } from "@/hooks";
 
 import styles from "./SearchBar.module.scss";
 
-export default function SearchBar({ field }: { field: string }) {
+export default function SearchBar({
+  field,
+  label,
+}: {
+  field: string;
+  label?: string;
+}) {
   const [text, setText] = useState("");
 
   const queryName = `${field}Like`;
@@ -39,6 +45,7 @@ export default function SearchBar({ field }: { field: string }) {
             search();
           }
         }}
+        placeholder={label ? `${label}(으)로 검색` : ""}
       />
       <button onClick={search}>
         <SearchIcon />

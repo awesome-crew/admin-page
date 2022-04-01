@@ -49,7 +49,12 @@ export function ListTemplate<Model>({
         <p className={styles.description}>{model.description}</p>
       )}
       <div className={styles.actions}>
-        {model.searchField != null && <SearchBar field={model.searchField} />}
+        {model.searchFieldName != null && (
+          <SearchBar
+            field={model.searchFieldName}
+            label={model.searchFieldLabel}
+          />
+        )}
         <ButtonGroup buttons={getButtons()} />
       </div>
       <div className={styles.body}>

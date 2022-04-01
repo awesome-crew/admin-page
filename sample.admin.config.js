@@ -9,7 +9,8 @@ const config = {
         {
           label: "유저(사용자)",
           name: "user",
-          searchField: "nickname",
+          searchFieldName: "nickname",
+          searchFieldLabel: "닉네임",
           create: true,
           delete: false,
           detail: true,
