@@ -54,9 +54,9 @@ export function Button({
   const [backgroundColor, color, dripColor] = useMemo(
     () =>
       ({
-        primary: [palette.blue, palette.white, "#82a8f6"],
+        primary: [palette.black, palette.white, "#bbb"],
         danger: [palette.red, palette.white, "#ff9fb4"],
-        secondary: [palette.gray3, palette.black, palette.gray2],
+        secondary: [palette.gray8, palette.black, palette.gray7],
       }[type]),
     [type]
   );
