@@ -17,6 +17,12 @@ export default function ProjectDetail() {
           { label: "ID", name: "id", editable: false },
           { label: "제목", name: "name" },
           { label: "내용", name: "content", type: "text" },
+          {
+            label: "이미지",
+            name: "imageUrls",
+            value: (project: Project) => project.images.map((v) => v.url),
+            type: "imageUrlArray",
+          },
         ]}
       />
     </MainLayout>
