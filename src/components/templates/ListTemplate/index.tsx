@@ -30,7 +30,7 @@ export function ListTemplate<Model>({
 
   const getButtons = () => {
     return [
-      model.create && { label: "Create new", href: `/${name}s/create` },
+      model.create && { label: "추가하기", href: `/${name}s/create` },
       ...(buttons ?? []),
     ];
   };
@@ -42,9 +42,12 @@ export function ListTemplate<Model>({
         {section.name} / {model.label}
       </span>
       <h1 className={styles.title}>
-        List
+        {model.label}
         <span className={styles.count}>{count}</span>
       </h1>
+      {model.description != null && (
+        <p className={styles.description}>{model.description}</p>
+      )}
       <div className={styles.actions}>
         {model.searchField != null && <SearchBar field={model.searchField} />}
         <ButtonGroup buttons={getButtons()} />

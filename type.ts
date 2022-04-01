@@ -1,6 +1,8 @@
 export type AdminModel = {
   label: string;
   name: string;
+  description?: string;
+
   searchField?: string;
   list?: boolean;
   create?: boolean;

@@ -2,14 +2,15 @@
   font-size: 14px;
   color: $gray5;
 
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 }
 .title {
   display: flex;
   flex-direction: row;
   align-items: center;
 
-  font-size: 32px;
+  font-size: 36px;
+  font-weight: 700;
 
   margin-bottom: 16px;
 
@@ -24,12 +25,18 @@
     font-size: 12px;
   }
 }
+.description {
+  margin: 16px 0 0 0;
+  color: $gray6;
+  font-size: 14px;
+}
 
 .actions {
   display: flex;
   flex-direction: row;
 
   width: 100%;
+  margin-top: 48px;
   margin-bottom: 16px;
 }
 
