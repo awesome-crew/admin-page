@@ -2,8 +2,15 @@ import React, { ReactNode } from "react";
 import dayjs from "dayjs";
 
 import { Empty, Loading } from "@/components/atoms";
-import { ChevronLeftIcon, ChevronRightIcon, TrashCanIcon } from "@/icons";
+import {
+  CheckInCircleFillIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  TrashCanIcon,
+  XInCircleFillIcon,
+} from "@/icons";
 
+import { palette } from "@/constants";
 import { findModel } from "@/helpers";
 import { useQuery } from "@/hooks";
 import { api } from "@/services";
@@ -127,13 +134,17 @@ function Cell({
       return dayjs(children).format("YYYY/MM/DD HH:mm:ss");
     }
     if (typeof children === "boolean") {
-      return children === true ? "✅" : "❌";
+      return children === true ? (
+        <CheckInCircleFillIcon fill={palette.blue} />
+      ) : (
+        <XInCircleFillIcon fill={palette.red} />
+      );
     }
 
     return children;
   };
 
-  return <td>{renderChildren()}</td>;
+  return <td className={styles.cell}>{renderChildren()}</td>;
 }
 
 const PAGINATOR_SIZE = 5;

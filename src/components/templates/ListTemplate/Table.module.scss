@@ -47,6 +47,13 @@
   }
 }
 
+.cell {
+  > svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 .delete {
   cursor: pointer;
   transition: all 0.3s;
