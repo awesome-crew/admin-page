@@ -28,13 +28,15 @@ export function CreateTemplate<Model>({
     }
   };
 
+  const title = model.label + " 추가";
+
   return (
     <>
-      <Seo title={model.label + " 생성"} />
+      <Seo title={title} />
       <span className={styles.breadcrumb}>
         {section.name} / {model.label}
       </span>
-      <FormTemplate title="Create" onSubmit={handleSubmit} fields={fields} />
+      <FormTemplate title={title} onSubmit={handleSubmit} fields={fields} />
     </>
   );
 }
