@@ -6,7 +6,6 @@ import {
   CheckInCircleFillIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  TrashCanIcon,
   XInCircleFillIcon,
 } from "@/icons";
 
@@ -122,7 +121,7 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
           {props.data?.map(renderRecord)}
         </tbody>
       </table>
-      {props.count && <Paginator count={props.count} />}
+      {props.count > 0 && <Paginator count={props.count} />}
     </div>
   );
 }
