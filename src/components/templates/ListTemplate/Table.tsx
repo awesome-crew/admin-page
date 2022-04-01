@@ -70,13 +70,15 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
         ))}
         {hasDelete && (
           <td style={{ display: "flex" }}>
-            <TrashCanIcon
+            <p
               className={styles.delete}
               onClick={(e) => {
                 e.stopPropagation();
                 deleteRecord((record as any).id);
               }}
-            />
+            >
+              삭제
+            </p>
           </td>
         )}
       </tr>
