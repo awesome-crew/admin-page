@@ -2,6 +2,8 @@ import { useForm } from "@/hooks";
 
 import { BaseField, BaseFieldProps } from "./Base";
 
+import styles from "./Boolean.module.scss";
+
 export function BooleanField(props: Omit<BaseFieldProps<boolean>, "children">) {
   const { name, value, editable = true } = props;
 
@@ -12,11 +14,12 @@ export function BooleanField(props: Omit<BaseFieldProps<boolean>, "children">) {
       {editable ? (
         <>
           {[true, false].map((v, index) => (
-            <div key={index}>
+            <div key={index} className={styles.wrapper}>
               <input
                 id={name + v?.toString()}
                 type="radio"
                 name={name}
+                className={styles.radio}
                 value={v?.toString()}
                 defaultChecked={value === v}
                 onChange={(e) => {
