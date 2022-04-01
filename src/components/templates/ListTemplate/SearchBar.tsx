@@ -15,7 +15,7 @@ export default function SearchBar({
 }) {
   const [text, setText] = useState("");
 
-  const queryName = `${field}Like`;
+  const queryName = `${field}Include`;
 
   const { query, set } = useQuery();
 
