@@ -69,7 +69,7 @@ export default function ListTable<Model>(props: ListTableProps<Model>) {
           </Cell>
         ))}
         {hasDelete && (
-          <td>
+          <td style={{ display: "flex" }}>
             <TrashCanIcon
               className={styles.delete}
               onClick={(e) => {
