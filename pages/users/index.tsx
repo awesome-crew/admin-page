@@ -13,10 +13,8 @@ export default function Users() {
         buttons={[{ label: "멘토 계정 생성", href: "/users/create-mentor" }]}
         fields={[
           "id",
-          {
-            label: "멘토여부",
-            value: (user) => (user.isMento ? "✅" : "❌"),
-          },
+          { label: "멘토 계정 여부", name: "isMento" },
+          { label: "휴면 계정 여부", name: "isDormant" },
           {
             label: "프로필",
             render: (user) => (
@@ -44,22 +42,8 @@ export default function Users() {
           { label: "가입일시", name: "createdAt" },
         ]}
         filters={[
-          { name: "isMento", label: "멘토계정여부", type: "boolean" },
-          {
-            name: "asdf",
-            label: "인증방식",
-            type: "enum",
-            enumValues: [
-              {
-                label: "카카오",
-                value: "Kakako",
-              },
-              {
-                label: "애플",
-                value: "Apple",
-              },
-            ],
-          },
+          { name: "isMento", label: "멘토 계정 여부", type: "boolean" },
+          { name: "isDormant", label: "휴면 계정 여부", type: "boolean" },
         ]}
       />
     </MainLayout>
