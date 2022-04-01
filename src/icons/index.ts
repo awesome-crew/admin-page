@@ -1,4 +1,5 @@
 export * from "./arrow-left";
+export * from "./check-in-circle-fill";
 export * from "./chevron-left";
 export * from "./chevron-right";
 export * from "./empty";
@@ -9,4 +10,5 @@ export * from "./search";
 export * from "./spin";
 export * from "./trash-can";
 export * from "./upload";
+export * from "./x-in-circle-fill";
 export * from "./x";
