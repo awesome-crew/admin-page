@@ -45,3 +45,6 @@ export function FormTemplate<Model>({
     </>
   );
 }
+
+export const FormFields = Fields;
+export type { FormFieldsProps } from "./Fields";

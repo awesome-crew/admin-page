@@ -1,7 +1,7 @@
-import { Fragment, ReactNode } from "react";
+import { ReactNode } from "react";
 
+import { FormFields, FormFieldsProps } from "../FormTemplate";
 import { ButtonGroup, ButtonGroupProps, Seo } from "@/components/atoms";
-import Fields, { DetailFieldsProps } from "./Fields";
 import { ArrowLeftIcon } from "@/icons";
 
 import { useDetailData } from "./useDetailData";
@@ -19,7 +19,7 @@ export type DetailTemplateProps<Model> = {
   buttons?:
     | ButtonGroupProps["buttons"]
     | ((model: Model) => ButtonGroupProps["buttons"]);
-  fields: DetailFieldsProps<Model>["fields"];
+  fields: FormFieldsProps<Model>["fields"];
   Extras?: Array<{
     label: string;
     render: (model: Model) => ReactNode;
@@ -92,7 +92,7 @@ export function DetailTemplate<Model>({
         <ButtonGroup buttons={getButtons()} />
       </h1>
       <div className={styles.body}>
-        <Fields data={data} fields={fields} />
+        <FormFields data={data} fields={fields} />
       </div>
       {Extras && data && (
         <div className={styles.body}>
