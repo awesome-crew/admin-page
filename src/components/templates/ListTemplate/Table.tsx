@@ -130,7 +130,9 @@ function Cell({
   children: string | number | boolean | ReactNode;
 }) {
   const isDate = (input: unknown): input is string =>
-    typeof input === "string" && dayjs(input).isValid();
+    typeof input === "string" &&
+    dayjs(input).isValid() &&
+    dayjs(input).toISOString() === input;
 
   const renderChildren = () => {
     if (isDate(children)) {
