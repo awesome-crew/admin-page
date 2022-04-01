@@ -57,13 +57,8 @@ function Section({ name, models }: AdminSection) {
           ref={listRef}
           className={styles.list}
           style={{
-            height:
-              typeof window === "undefined"
-                ? "fit-content"
-                : rendered
-                ? listRef.current.scrollHeight
-                : 0,
-            opacity: typeof window === "undefined" ? 1 : rendered ? 1 : 0,
+            height: rendered ? listRef.current.scrollHeight : 0,
+            opacity: rendered ? 1 : 0,
           }}
         >
           {models
