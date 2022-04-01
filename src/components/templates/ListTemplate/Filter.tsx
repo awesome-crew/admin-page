@@ -71,8 +71,8 @@ export default function ListFilter({ filters }: ListFilterProps) {
 
   return (
     <section className={styles.wrapper}>
-      <h2 className={styles.title}>Filter</h2>
-      {renderInputs()}
+      <span className={styles.title}>Filter</span>
+      <div className={styles.inputs}>{renderInputs()}</div>
     </section>
   );
 }
