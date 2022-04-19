@@ -17,11 +17,13 @@ export function ImageUrlArrayField(
   const { form, update } = useForm();
 
   useEffect(() => {
-    update({
-      [name]: value,
-    });
+    if (value && !form[name]) {
+      update({
+        [name]: value,
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [value]);
 
   const clear = () => {
     update({
